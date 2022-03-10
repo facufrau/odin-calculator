@@ -1,5 +1,3 @@
-console.log("test");
-
 function add(number1, number2) {
     return number1 + number2;
 }
@@ -31,4 +29,22 @@ function operate(operator, operands) {
         console.log("TODO")
     }
     return result;
+}
+
+const numbersButtons = document.querySelectorAll(".number");
+const deleteButton = document.getElementById("del");
+
+numbersButtons.forEach(button => button.addEventListener("click", updateDisplay));
+deleteButton.addEventListener("click", deleteLastNumber);
+
+
+function updateDisplay(e) {
+    const value = e.target.value;
+    const display = document.getElementById("display");
+    display.textContent += value;
+}
+
+function deleteLastNumber(e) {
+    const display = document.getElementById("display");
+    display.textContent = display.textContent.slice(0,-1);
 }
