@@ -1,0 +1,43 @@
+body {
+    font-family: 'Lucida Console', 'Lato', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    background-color: cadetblue;
+    padding: 10px;
+    margin: 8px;
+    border: 1px solid crimson;
+    border-radius: 0.5em 0.5em 0.7em 0.7em;
+    width: 4em;
+    height: 3em;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+}
+
+#keys {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
+}
+
+#display {
+    box-sizing: border-box;
+    background-color: #000;
+    color: #FFF;
+    text-align: center;
+    font-size: 34px;
+    margin: 0 auto;
+    padding: 20px 100px;
+    max-width: 400px;
+    max-height: 100px;
+}
