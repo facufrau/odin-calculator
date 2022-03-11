@@ -39,7 +39,7 @@ button {
     grid-column: 1 / 6;
 }
 
-#equal, #ac {
+#equal, #clear {
     grid-column: 4 / 6;
 }
 
