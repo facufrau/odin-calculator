@@ -54,6 +54,22 @@ function deleteLastNumber(dataObject) {
     updateDisplay(dataObject.display);
 }
 
+function clearAll(dataObject) {
+    dataObject.display = "";
+    dataObject.operators = [];
+    dataObject.numbers = [];
+    updateDisplay("");
+}
+
+function addDecimalPoint(dataObject) {
+    let newDisplay = dataObject.display;
+    if (!dataObject.display.includes(".")){
+        newDisplay += ".";
+        dataObject.display = newDisplay;
+    }
+    updateDisplay(newDisplay);
+}
+
 function handleOperation(e, dataObject){
     const operator = e.target.value;
     const numbers = dataObject.numbers;
@@ -66,7 +82,7 @@ function handleOperation(e, dataObject){
     updateDisplay("");
     dataObject.display = "";
 
-    if (operator === "=") {
+    if (operator === "=" || operators.length > 1) {
         const previousOperator = operators[operators.length - 2];
         result = operate(previousOperator, numbers[numbers.length - 2], numbers[numbers.length - 1]);
         if (String(result).includes(".")){
@@ -78,12 +94,7 @@ function handleOperation(e, dataObject){
   
 }
 
-function clearAll(dataObject) {
-    dataObject.display = "";
-    dataObject.operators = [];
-    dataObject.numbers = [];
-    updateDisplay("");
-}
+
 
 
 const numbersButtons = document.querySelectorAll(".number");
@@ -96,9 +107,11 @@ const objectValues = {
     "display": "",
     "operators": [],
     "numbers": [],
+    
 };
 
 numbersButtons.forEach(button => button.addEventListener("click", (e) => updateData(e, objectValues)));
 operatorsButtons.forEach(button => button.addEventListener("click", (e) => handleOperation(e, objectValues)))
 deleteButton.addEventListener("click", () => deleteLastNumber(objectValues));
 clearButton.addEventListener("click", () => clearAll(objectValues));
+dotButton.addEventListener("click", () => addDecimalPoint(objectValues));
