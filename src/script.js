@@ -56,8 +56,10 @@ function deleteLastNumber(dataObject) {
 
 function clearAll(dataObject) {
     dataObject.display = "";
-    dataObject.operators = [];
-    dataObject.numbers = [];
+    dataObject.firstOperator = null;
+    dataObject.secondOperator = null;
+    dataObject.firstNumber = null;
+    dataObject.secondNumber = null;
     updateDisplay("");
 }
 
@@ -72,10 +74,28 @@ function addDecimalPoint(dataObject) {
 
 function handleOperation(e, dataObject){
     const operator = e.target.value;
-    const numbers = dataObject.numbers;
-    const operators = dataObject.operators;
     let result;
 
+    if (!dataObject.firstOperator) {
+        dataObject.firstOperator = operator;
+        dataObject.firstNumber = Number(dataObject.display);
+        updateDisplay("");
+        dataObject.display = "";
+    }
+
+    else {
+        dataObject.secondNumber = Number(dataObject.display);
+        dataObject.secondOperator = operator;
+        result = operate(dataObject.firstOperator, dataObject.firstNumber, dataObject.secondNumber)
+        updateDisplay(result);
+        dataObject.firstOperator = operator;
+        dataObject.firstNumber = result;
+    }
+    
+    
+    /*
+       
+    
     numbers.push(Number(dataObject.display));
     console.log(numbers);
     operators.push(operator);
@@ -91,7 +111,7 @@ function handleOperation(e, dataObject){
         updateDisplay(result);
         dataObject.display = String(result);
     }
-  
+  */
 }
 
 
@@ -105,9 +125,10 @@ const clearButton = document.getElementById("clear");
 
 const objectValues = {
     "display": "",
-    "operators": [],
-    "numbers": [],
-    
+    "firstOperator": null,
+    "secondOperator": null,
+    "firstNumber": null,
+    "secondNumber": null,
 };
 
 numbersButtons.forEach(button => button.addEventListener("click", (e) => updateData(e, objectValues)));
