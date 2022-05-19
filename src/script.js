@@ -34,105 +34,52 @@ function operate(operator, number1, number2) {
     return result;
 }
 
-function updateData(e, dataObject) {
-    const numberPressed = e.target.value;
-    if (!dataObject.display) {
-        dataObject.display = "" + numberPressed;
-    } else if (dataObject.display.length < 10) {
-        dataObject.display = dataObject.display + numberPressed;
-    }
-    updateDisplay(dataObject.display);
-}
-
-function updateDisplay(numberToDisplay) {
+function updateDisplay(number, calculatorData) {
     const display = document.getElementById("display");
-    display.textContent = numberToDisplay;
-}
-
-function deleteLastNumber(dataObject) {
-    dataObject.display = dataObject.display.slice(0,-1);
-    updateDisplay(dataObject.display);
-}
-
-function clearAll(dataObject) {
-    dataObject.display = "";
-    dataObject.firstOperator = null;
-    dataObject.secondOperator = null;
-    dataObject.firstNumber = null;
-    dataObject.secondNumber = null;
-    updateDisplay("");
-}
-
-function addDecimalPoint(dataObject) {
-    let newDisplay = dataObject.display;
-    if (!dataObject.display.includes(".")){
-        newDisplay += ".";
-        dataObject.display = newDisplay;
+    if (!calculatorData.display || calculatorData.display[0] === "0") {
+        calculatorData.display = "" + number;
+    } else if (calculatorData.display.length < 10) {
+        calculatorData.display = calculatorData.display + number;
     }
-    updateDisplay(newDisplay);
+   display.textContent = calculatorData.display;
+
 }
 
-function handleOperation(e, dataObject){
-    const operator = e.target.value;
-    let result;
-
-    if (!dataObject.firstOperator) {
-        dataObject.firstOperator = operator;
-        dataObject.firstNumber = Number(dataObject.display);
-        updateDisplay("");
-        dataObject.display = "";
-    }
-
-    else {
-        dataObject.secondNumber = Number(dataObject.display);
-        dataObject.secondOperator = operator;
-        result = operate(dataObject.firstOperator, dataObject.firstNumber, dataObject.secondNumber)
-        updateDisplay(result);
-        dataObject.firstOperator = operator;
-        dataObject.firstNumber = result;
-    }
-    
-    
-    /*
-       
-    
-    numbers.push(Number(dataObject.display));
-    console.log(numbers);
-    operators.push(operator);
-    updateDisplay("");
-    dataObject.display = "";
-
-    if (operator === "=" || operators.length > 1) {
-        const previousOperator = operators[operators.length - 2];
-        result = operate(previousOperator, numbers[numbers.length - 2], numbers[numbers.length - 1]);
-        if (String(result).includes(".")){
-            result = result.toFixed(3)
-        }
-        updateDisplay(result);
-        dataObject.display = String(result);
-    }
-  */
+function clearAll(calculatorData){
+    for (let data in calculatorData) {
+        data === "display" ? calculatorData[data] = 0 : calculatorData[data] = null;
+    };
+    document.getElementById("display").textContent = "0";
 }
 
-
-
-
-const numbersButtons = document.querySelectorAll(".number");
-const operatorsButtons = document.querySelectorAll(".operator");
-const deleteButton = document.getElementById("del");
-const dotButton = document.getElementById("dot");
-const clearButton = document.getElementById("clear");
-
-const objectValues = {
-    "display": "",
-    "firstOperator": null,
-    "secondOperator": null,
+const calculatorData = {
+    "display": 0,
+    "operator": null,
     "firstNumber": null,
     "secondNumber": null,
 };
 
-numbersButtons.forEach(button => button.addEventListener("click", (e) => updateData(e, objectValues)));
-operatorsButtons.forEach(button => button.addEventListener("click", (e) => handleOperation(e, objectValues)))
-deleteButton.addEventListener("click", () => deleteLastNumber(objectValues));
-clearButton.addEventListener("click", () => clearAll(objectValues));
-dotButton.addEventListener("click", () => addDecimalPoint(objectValues));
+const buttons = document.querySelectorAll("button");
+buttons.forEach (button => button.addEventListener("click", (e) => buttonClick(e, calculatorData)))
+
+function buttonClick(e, calculatorData) {
+    let targetName = e.target.name;
+
+    if (targetName === "number") {
+        let number = e.target.value;
+        updateDisplay(number, calculatorData);
+        } 
+    else if (targetName === "operator") {
+        console.log("operator");
+        } 
+    else if (targetName === "clear") {
+        clearAll(calculatorData);
+        } 
+    else if (targetName === "dot") {
+        console.log("dot");
+        } 
+    else if (targetName === "del") {
+        console.log("del");
+        }
+}
+
