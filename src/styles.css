@@ -31,6 +31,11 @@ button {
     justify-items: stretch;
 }
 
+.pressed {
+    background-color: gray;
+    outline: 5px solid hotpink;
+}
+
 #display {
     background-color: #000;
     color: #FFF;

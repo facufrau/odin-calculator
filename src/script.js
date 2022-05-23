@@ -59,7 +59,7 @@ function clearAll(calculatorData){
 }
 
 const calculatorData = {
-    "display": 0,
+    "display": "",
     "operator": null,
     "firstNumber": null,
     "secondNumber": null,
@@ -79,7 +79,7 @@ function buttonClick(e, calculatorData) {
         } 
     else if (targetName === "operator") {
         let operator = e.target.value;
-        if(!calculatorData.firstNumber) {
+        if (calculatorData.firstNumber === null) {
             calculatorData.firstNumber = Number(calculatorData.display);
             calculatorData.operator = operator;
             clearDisplay(calculatorData);
@@ -90,7 +90,7 @@ function buttonClick(e, calculatorData) {
             display.textContent = result;
             calculatorData.firstNumber = result;
             calculatorData.operator = operator;
-            calculatorData.display = "0";
+            calculatorData.display = "";
             }
         } 
     else if (targetName === "clear") {
