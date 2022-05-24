@@ -58,6 +58,18 @@ function clearAll(calculatorData){
     clearDisplay(calculatorData);
 }
 
+function roundResult(result) {
+    resultString = String(result);
+    if (resultString.length >= 10) {
+        if (resultString.includes(".")){
+            return parseFloat(result.toFixed(9 - resultString.indexOf(".") + 1));
+        } else {
+            return 9999999999;
+        }
+    } 
+    return result;
+}
+
 const calculatorData = {
     "display": "",
     "operator": null,
@@ -79,7 +91,10 @@ function buttonClick(e, calculatorData) {
         } 
     else if (targetName === "operator") {
         let operator = e.target.value;
-        if (calculatorData.firstNumber === null) {
+        if (operator === "=" && calculatorData.firstNumber === null) {
+            return;
+            }
+        else if (calculatorData.firstNumber === null) {
             calculatorData.firstNumber = Number(calculatorData.display);
             calculatorData.operator = operator;
             clearDisplay(calculatorData);
@@ -90,8 +105,9 @@ function buttonClick(e, calculatorData) {
         else {
             calculatorData.secondNumber = Number(calculatorData.display);
             result = operate(calculatorData.operator, calculatorData.firstNumber, calculatorData.secondNumber);
-            display.textContent = result;
-            calculatorData.firstNumber = result;
+            let rounded = roundResult(result); 
+            display.textContent = rounded;
+            calculatorData.firstNumber = rounded;
             calculatorData.operator = operator;
             calculatorData.display = "";
             }
@@ -106,3 +122,4 @@ function buttonClick(e, calculatorData) {
         console.log("del");
         }
 }
+
