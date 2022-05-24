@@ -84,6 +84,9 @@ function buttonClick(e, calculatorData) {
             calculatorData.operator = operator;
             clearDisplay(calculatorData);
             }
+        else if (calculatorData.operator === "=") {
+            calculatorData.operator = operator;
+        }
         else {
             calculatorData.secondNumber = Number(calculatorData.display);
             result = operate(calculatorData.operator, calculatorData.firstNumber, calculatorData.secondNumber);
@@ -103,4 +106,3 @@ function buttonClick(e, calculatorData) {
         console.log("del");
         }
 }
-
