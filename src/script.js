@@ -70,6 +70,13 @@ function roundResult(result) {
     return result;
 }
 
+function removeLastValue(calculatorData){
+    const display = document.getElementById("display");
+    calculatorData.display = calculatorData.display.slice(0,-1);
+    display.textContent = calculatorData.display;
+}
+
+
 const calculatorData = {
     "display": "",
     "operator": null,
@@ -78,6 +85,8 @@ const calculatorData = {
 };
 
 const buttons = document.querySelectorAll("button");
+const buttonDelete = document.getElementById("del");
+
 buttons.forEach (button => button.addEventListener("click", (e) => buttonClick(e, calculatorData)))
 
 function buttonClick(e, calculatorData) {
@@ -86,6 +95,9 @@ function buttonClick(e, calculatorData) {
     const display = document.getElementById("display");
 
     if (targetName === "number") {
+        if (buttonDelete.hasAttribute("disabled")) {
+            buttonDelete.removeAttribute("disabled");
+        }
         let number = e.target.value;
         updateDisplay(number, calculatorData);
         } 
@@ -103,6 +115,7 @@ function buttonClick(e, calculatorData) {
             calculatorData.operator = operator;
         }
         else {
+            buttonDelete.setAttribute("disabled", "");
             calculatorData.secondNumber = Number(calculatorData.display);
             result = operate(calculatorData.operator, calculatorData.firstNumber, calculatorData.secondNumber);
             let rounded = roundResult(result); 
@@ -119,7 +132,7 @@ function buttonClick(e, calculatorData) {
         console.log("dot");
         } 
     else if (targetName === "del") {
-        console.log("del");
+        removeLastValue(calculatorData)
         }
 }
 
