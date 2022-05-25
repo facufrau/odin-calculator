@@ -11,15 +11,14 @@ h1 {
 }
 
 button {
-    background-color: cadetblue;
     font-size: 1.5em;
     font-weight: bold;
     padding: 10px;
     margin: 8px;
-    border: 1px solid crimson;
     border-radius: 0.5em 0.5em 0.7em 0.7em;
     min-width: 4em;
     height: 3em;
+    box-shadow: 4px 4px 3px 0px teal;
 }
 
 .container {

@@ -35,8 +35,9 @@ function operate(operator, number1, number2) {
 }
 
 function updateDisplay(number, calculatorData) {
-    const display = document.getElementById("display");
-    if (!calculatorData.display || calculatorData.display[0] === "0") {
+    if (!calculatorData.display || 
+        (calculatorData.display[0] === "0" && !calculatorData.display.includes(".")))
+        {
         calculatorData.display = "" + number;
     } else if (calculatorData.display.length < 10) {
         calculatorData.display = calculatorData.display + number;
@@ -46,7 +47,6 @@ function updateDisplay(number, calculatorData) {
 }
 
 function clearDisplay(calculatorData) {
-    const display = document.getElementById("display");
     calculatorData.display = "0";
     display.textContent = calculatorData.display;
 }
@@ -71,8 +71,16 @@ function roundResult(result) {
 }
 
 function removeLastValue(calculatorData){
-    const display = document.getElementById("display");
     calculatorData.display = calculatorData.display.slice(0,-1);
+    display.textContent = calculatorData.display;
+}
+
+function addDecimalPoint(calculatorData) {
+    let newDisplay = calculatorData.display;
+    if (!calculatorData.display.includes(".")){
+        newDisplay += ".";
+        calculatorData.display = newDisplay;
+    }
     display.textContent = calculatorData.display;
 }
 
@@ -84,6 +92,7 @@ const calculatorData = {
     "secondNumber": null,
 };
 
+const display = document.getElementById("display");
 const buttons = document.querySelectorAll("button");
 const buttonDelete = document.getElementById("del");
 
@@ -129,10 +138,9 @@ function buttonClick(e, calculatorData) {
         clearAll(calculatorData);
         } 
     else if (targetName === "dot") {
-        console.log("dot");
+        addDecimalPoint(calculatorData);
         } 
     else if (targetName === "del") {
         removeLastValue(calculatorData)
         }
 }
-
