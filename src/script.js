@@ -64,7 +64,7 @@ function roundResult(result) {
         if (resultString.includes(".")){
             return parseFloat(result.toFixed(9 - resultString.indexOf(".") + 1));
         } else {
-            return 9999999999;
+            return Number(resultString.substring(0, 10));
         }
     } 
     return result;
@@ -84,6 +84,28 @@ function addDecimalPoint(calculatorData) {
     display.textContent = calculatorData.display;
 }
 
+
+function disableCalculator() {
+    buttons.forEach(button => {
+        if (button.id === "clear") {
+            button.classList.add("highlighted");
+        }  
+        else {
+            button.setAttribute("disabled", "");
+            }
+    })
+}
+
+function enableCalculator() {
+    buttons.forEach(button => {
+        if (button.id === "clear") {
+            button.classList.remove("highlighted");
+        }  
+        else {
+            button.removeAttribute("disabled");
+            }
+    })
+}
 
 const calculatorData = {
     "display": "",
@@ -128,6 +150,9 @@ function buttonClick(e, calculatorData) {
             calculatorData.secondNumber = Number(calculatorData.display);
             result = operate(calculatorData.operator, calculatorData.firstNumber, calculatorData.secondNumber);
             let rounded = roundResult(result); 
+            if (rounded === "DIV/0 ERR") {
+                disableCalculator();
+            }
             display.textContent = rounded;
             calculatorData.firstNumber = rounded;
             calculatorData.operator = operator;
@@ -135,6 +160,9 @@ function buttonClick(e, calculatorData) {
             }
         } 
     else if (targetName === "clear") {
+        if (e.target.classList.contains("highlighted")){
+            enableCalculator();
+        }
         clearAll(calculatorData);
         } 
     else if (targetName === "dot") {

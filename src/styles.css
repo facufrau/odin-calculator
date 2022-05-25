@@ -30,8 +30,7 @@ button {
     justify-items: stretch;
 }
 
-.pressed {
-    background-color: gray;
+.highlighted {
     outline: 5px solid hotpink;
 }
 
