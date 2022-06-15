@@ -172,3 +172,29 @@ function buttonClick(e, calculatorData) {
         removeLastValue(calculatorData)
         }
 }
+
+
+const body = document.querySelector("body");
+const keyboardConverter = {
+    "Escape": "clear",
+    "Backspace": "del",
+    "Delete": "del",
+    ".": "dot",
+    ",": "dot",
+    "Enter": "equal",
+    "+": "+",
+    "-": "-",
+    "*": "*",
+    "/": "/",
+    "=": "equal"
+}
+
+body.addEventListener("keydown", (e) => {
+    let buttonForKeyPressed;
+    if (!isNaN(parseInt(e.key))) {
+        buttonForKeyPressed = document.getElementById(e.key);
+    } else if (e.key in keyboardConverter){
+        buttonForKeyPressed = document.getElementById(keyboardConverter[e.key]);
+    }
+    buttonForKeyPressed ? buttonForKeyPressed.click() : "";
+})

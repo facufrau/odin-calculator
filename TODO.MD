@@ -6,6 +6,6 @@
 
 3. ✅ Display a snarky error message if the user tries to divide by 0… don’t let it crash your calculator!
 
-4. EXTRA CREDIT: Add keyboard support!
+4. ✅ EXTRA CREDIT: Add keyboard support!
 
 5. EXTRA CREDIT: Make it look nice! This is a great project to practice your CSS skills. At least make the operations a different color from the keypad buttons.
