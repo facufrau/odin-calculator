@@ -7,29 +7,39 @@
     <title>Calculator</title>
     <link rel="icon" type="image/png" href="src/icon.png" />
     <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+
 </head>
 <body>
     <h1>Calculator</h1>
     <div class="container" id="container">
+
         <div id="display">
             0
         </div>
+
+        <a href="https://github.com/facufrau/odin-calculator" class="gh-button" target="_blank">
+            <img src="src/gh-logo.png">
+        </a>
+        <button type="button" value="ac" name="clear" class="clear" id="clear">AC</button>
+        <button type="button" value="/" name="operator" class="operator"  id="/">÷</button>
+
         <button type="button" value="7" name="number" class="number" id="7">7</button>
         <button type="button" value="8" name="number" class="number" id="8">8</button>
         <button type="button" value="9" name="number" class="number" id="9">9</button>
-        <button type="button" value="ac" name="clear" class="clear" id="clear">AC</button>
-
+        <button type="button" value="*" name="operator" class="operator"  id="*">×</button>
+        
         <button type="button" value="4" name="number" class="number" id="4">4</button>
         <button type="button" value="5" name="number" class="number" id="5">5</button>
         <button type="button" value="6" name="number" class="number" id="6">6</button>
-        <button type="button" value="*" name="operator" class="operator"  id="*">*</button>
-        <button type="button" value="/" name="operator" class="operator"  id="/">/</button>
+        <button type="button" value="-" name="operator" class="operator"  id="-">-</button>        
 
         <button type="button" value="1" name="number" class="number" id="1">1</button>
         <button type="button" value="2" name="number" class="number" id="2">2</button>
         <button type="button" value="3" name="number" class="number" id="3">3</button>
         <button type="button" value="+" name="operator" class="operator"  id="+">+</button>
-        <button type="button" value="-" name="operator" class="operator"  id="-">-</button>
 
         <button type="button" value="0" name="number" class="number" id="0">0</button>
         <button type="button" value="." name="dot" class="dot" id="dot">.</button>

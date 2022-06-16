@@ -8,4 +8,4 @@
 
 4. ✅ EXTRA CREDIT: Add keyboard support!
 
-5. EXTRA CREDIT: Make it look nice! This is a great project to practice your CSS skills. At least make the operations a different color from the keypad buttons.
+5. ✅ EXTRA CREDIT: Make it look nice! This is a great project to practice your CSS skills. At least make the operations a different color from the keypad buttons.

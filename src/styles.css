@@ -1,31 +1,54 @@
 body {
-    font-family: 'Lucida Console', 'Lato', sans-serif;
+    font-family: 'Roboto', 'Lucida Console', 'Lato', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #1f1f1f;
 }
 
 h1 {
     text-align: center;
+    font-size: 2.5em;
+    margin: auto;
+    color: #5ab3f0;
 }
 
 button {
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
-    padding: 10px;
-    margin: 8px;
-    border-radius: 0.5em 0.5em 0.7em 0.7em;
-    min-width: 4em;
+    margin: 0.1em; 
+    border-radius: 100%;
+    border: none;
+    width: 3em;
     height: 3em;
-    box-shadow: 4px 4px 3px 0px teal;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+
+.gh-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    margin: 0.1em; 
+    border-radius: 100%;
+    width: 3em;
+    height: 3em;
+    background-color: #f8c9ff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 5px;  
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 10px 15px;  
     align-items: stretch;
     justify-items: stretch;
 }
@@ -34,19 +57,34 @@ button {
     outline: 5px solid hotpink;
 }
 
+.operator {
+    background-color: #5ab3f0;
+}
+
+#equal {
+    background-color: #d3e3fd;
+}
+
 #display {
-    background-color: #000;
+    background-color: #33383f;
     color: #FFF;
     padding: 0rem 1rem;
     text-align: right;
-    font-size: 5em;
-    grid-column: 1 / 6;
+    font-size: 4.5em;
+
+    border-radius: 3em;
+
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    grid-column: 1 / 5;
 }
 
-#equal, #clear {
-    grid-column: 4 / 6;
-}
-
-#del {
-    grid-column: 3;
+#clear {
+    background-color: #c4eed0;
+    grid-column: 2 / 4;
+    border-radius: 2em;
+    width: auto;
+    height: 3em;
 }
